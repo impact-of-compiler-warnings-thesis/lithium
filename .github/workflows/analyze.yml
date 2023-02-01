@@ -22,8 +22,6 @@ jobs:
           sudo apt update
           sudo apt install ninja-build \
                            lcov \
-                           postgresql-common \
-                           postgresql-server-dev-all \
                            mariadb-server \
                            libmariadb-dev \
                            libsqlite3-dev \
