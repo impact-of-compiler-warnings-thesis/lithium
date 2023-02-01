@@ -22,19 +22,14 @@ jobs:
           sudo apt update
           sudo apt install ninja-build \
                            lcov \
-                           mariadb-server \
-                           libmariadb-dev \
-                           libsqlite3-dev \
-                           libboost-all-dev \
-                           libcurl4-openssl-dev \
                            libssl-dev \
                            libpq-dev
-
       - name: Generate build files
         run: |
           mkdir build && cd build
           cmake .. -GNinja \
-                   -DCMAKE_BUILD_TYPE=Debug
+                   -DCMAKE_BUILD_TYPE=Debug \
+                   -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/vcpkg/scripts/buildsystems/vcpkg.cmake
       - name: Run build-wrapper
         run: |
           build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} ninja -C build
